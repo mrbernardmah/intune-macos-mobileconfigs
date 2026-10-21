@@ -65,11 +65,13 @@ def profile(folder, slug, title, desc, payloads, scope="System",
 
 
 def code_req(identifier, team):
-    return (f'identifier "{identifier}" and anchor apple generic and certificate '
-            f'leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and '
-            f'certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate '
-            f'leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate '
-            f'leaf[subject.OU] = {team}')
+    """Standard Developer ID requirement: bundle ID + Apple anchor + Developer ID CA +
+    Developer ID Application leaf + Team ID. Same form as `codesign -dr -` prints for
+    Developer ID apps. Verify per app with: codesign -dr - /Applications/<App>.app"""
+    return (f'identifier "{identifier}" and anchor apple generic and '
+            f'certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and '
+            f'certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and '
+            f'certificate leaf[subject.OU] = {team}')
 
 
 # ===========================================================================
@@ -371,16 +373,86 @@ def tcc_entry(ident, team, auth, comment):
                 Authorization=auth, Comment=comment)
 
 
-profile(F, "pppc-teams-screen-sharing", "PPPC - Teams and Zoom Screen Recording",
-        "Lets standard users approve Screen Recording for Teams and Zoom without admin rights. Does not use the Accessibility key (deprecated in macOS 27; use the declarative Privacy key instead).",
-        [("com.apple.TCC.configuration-profile-policy", "Privacy", dict(
-            Services=dict(ScreenCapture=[
-                tcc_entry("com.microsoft.teams2", MS_TEAM,
-                          "AllowStandardUserToSetSystemService", "Microsoft Teams"),
-                tcc_entry("us.zoom.xos", ZOOM_TEAM,
-                          "AllowStandardUserToSetSystemService", "Zoom")])))],
-        os27="Yes (no Accessibility)",
-        note="Avoid Accessibility service entries - deprecated in macOS 27.")
+# --- Per-app "full permissions" PPPC profiles -------------------------------
+# What MDM can and cannot grant (Apple TCC payload schema):
+#   Allow ............ file/folder services, Accessibility*, PostEvent, Contacts, Calendar,
+#                      Reminders, Photos, MediaLibrary, FileProviderPresence, App Bundles/Data
+#   AllowStandardUserToSetSystemService ... ScreenCapture, ListenEvent (users approve w/o admin)
+#   Deny only ........ Camera, Microphone (cannot be pre-approved; users get a one-time prompt)
+#   *Accessibility, Camera, Microphone, SpeechRecognition, BluetoothAlways are deprecated in 27.
+# Set INCLUDE_ACCESSIBILITY = False to drop Accessibility/PostEvent (avoids the per-app
+# notification macOS 27 shows for pushed Accessibility grants).
+INCLUDE_ACCESSIBILITY = True
+
+CHROME_TEAM = "EQHXZ8M8AV"
+MOZILLA_TEAM = "43AQ936H96"
+ANTHROPIC_TEAM = "Q6L2SF6YDW"
+
+FULL_ALLOW = [
+    "SystemPolicyAllFiles", "SystemPolicySysAdminFiles",
+    "SystemPolicyDesktopFolder", "SystemPolicyDocumentsFolder",
+    "SystemPolicyDownloadsFolder", "SystemPolicyNetworkVolumes",
+    "SystemPolicyRemovableVolumes", "SystemPolicyAppBundles", "SystemPolicyAppData",
+    "FileProviderPresence", "MediaLibrary",
+    "AddressBook", "Calendar", "Reminders", "Photos",
+]
+ACCESSIBILITY_ALLOW = ["Accessibility", "PostEvent"]
+STD_USER_SET = ["ScreenCapture", "ListenEvent"]
+
+
+def services_for(apps):
+    """apps: list of (bundle_id, team, comment). Returns the Services dict."""
+    svc = {}
+    allow = FULL_ALLOW + (ACCESSIBILITY_ALLOW if INCLUDE_ACCESSIBILITY else [])
+    for name in allow:
+        svc[name] = [tcc_entry(b, t, "Allow", c) for b, t, c in apps]
+    for name in STD_USER_SET:
+        svc[name] = [tcc_entry(b, t, "AllowStandardUserToSetSystemService", c) for b, t, c in apps]
+    return svc
+
+
+def pppc(slug, title, apps, note="", extra_desc=""):
+    profile(F, slug, title,
+            f"PPPC grants for: {', '.join(c for _, _, c in apps)}. Grants every service MDM is allowed to "
+            "pre-approve (files/folders, Contacts, Calendar, Reminders, Photos, Accessibility, input events); "
+            "Screen Recording and Input Monitoring are set so standard users can approve without admin. "
+            "Camera and Microphone cannot be pre-approved by MDM. " + extra_desc,
+            [("com.apple.TCC.configuration-profile-policy", "Privacy Preferences", dict(
+                Services=services_for(apps)))],
+            os27="Yes (Accessibility deprecated)",
+            note=note or "Verify code requirement with codesign -dr -.")
+
+
+pppc("pppc-google-chrome", "PPPC - Google Chrome",
+     [("com.google.Chrome", CHROME_TEAM, "Google Chrome")])
+pppc("pppc-microsoft-edge", "PPPC - Microsoft Edge",
+     [("com.microsoft.edgemac", MS_TEAM, "Microsoft Edge")])
+pppc("pppc-mozilla-firefox", "PPPC - Mozilla Firefox",
+     [("org.mozilla.firefox", MOZILLA_TEAM, "Mozilla Firefox")])
+pppc("pppc-microsoft-teams", "PPPC - Microsoft Teams",
+     [("com.microsoft.teams2", MS_TEAM, "Microsoft Teams (new)"),
+      ("com.microsoft.teams", MS_TEAM, "Microsoft Teams (classic)")],
+     note="Covers new Teams and the retired classic client.")
+pppc("pppc-zoom", "PPPC - Zoom Workplace",
+     [("us.zoom.xos", ZOOM_TEAM, "Zoom Workplace")])
+pppc("pppc-microsoft-office", "PPPC - Microsoft Office (Word, Excel, PowerPoint, Outlook, OneNote)",
+     [("com.microsoft.Word", MS_TEAM, "Microsoft Word"),
+      ("com.microsoft.Excel", MS_TEAM, "Microsoft Excel"),
+      ("com.microsoft.Powerpoint", MS_TEAM, "Microsoft PowerPoint"),
+      ("com.microsoft.Outlook", MS_TEAM, "Microsoft Outlook"),
+      ("com.microsoft.onenote.mac", MS_TEAM, "Microsoft OneNote")])
+pppc("pppc-microsoft-onedrive", "PPPC - Microsoft OneDrive",
+     [("com.microsoft.OneDrive", MS_TEAM, "Microsoft OneDrive")])
+pppc("pppc-microsoft-defender", "PPPC - Microsoft Defender for Endpoint",
+     [("com.microsoft.wdav", MS_TEAM, "Defender (wdav)"),
+      ("com.microsoft.wdav.epsext", MS_TEAM, "Defender Endpoint Security extension"),
+      ("com.microsoft.dlp.daemon", MS_TEAM, "Defender Endpoint DLP daemon"),
+      ("com.microsoft.dlp.agent", MS_TEAM, "Defender Endpoint DLP agent")],
+     note="Also deploy the Defender system extension, network filter and notification profiles (repo root).",
+     extra_desc="Does not approve the system/network extensions; those need their own profiles.")
+pppc("pppc-claude-desktop", "PPPC - Claude Desktop",
+     [("com.anthropic.claudefordesktop", ANTHROPIC_TEAM, "Claude Desktop")],
+     note="Claude Code (CLI) runs inside Terminal/IDE; grant those separately.")
 
 profile(F, "pppc-template", "PPPC (template)",
         "Template. Full Disk Access for one app via Team ID. Replace identifier, Team ID and code requirement. Avoid Accessibility; it is deprecated in macOS 27.",

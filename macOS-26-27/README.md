@@ -17,7 +17,7 @@ Intune must receive profiles **unsigned**. Intune's native Settings catalog poli
 ## What changed in macOS 26 and 27 (affects these profiles)
 
 - **Software update management moves to DDM.** The `com.apple.SoftwareUpdate` payload, update commands/queries and the restriction-based deferrals are deprecated in 26 and **stop working in all macOS 27.0 releases**. The legacy profile is kept in `legacy-macos-26-only/` for 26 fleets. For 27, use declarative software update (`com.apple.configuration.softwareupdate.settings` plus enforcement) from Intune's Settings catalog. DDM declarations are JSON, not `.mobileconfig`, so they are not included here.
-- **PPPC is being replaced.** Keys in `com.apple.TCC.configuration-profile-policy` are deprecated in macOS 27 but keep working through the 27 cycle. The **Accessibility** key is the exception that users notice: they get a notification per app and can switch the grant off. The PPPC profiles here avoid Accessibility. The replacement is the `Privacy` key in the declarative `com.apple.configuration.app.settings`.
+- **PPPC is being replaced.** Keys in `com.apple.TCC.configuration-profile-policy` are deprecated in macOS 27 but keep working through the 27 cycle. The **Accessibility** key is the exception that users notice: they get a notification per app and can switch the grant off. The per-app PPPC profiles here do include Accessibility (you asked for full permissions); set `INCLUDE_ACCESSIBILITY = False` in `tools/generate.py` and rebuild to drop it. The replacement is the `Privacy` key in the declarative `com.apple.configuration.app.settings`.
 - **App/binary control** (`AllowedBinaries` / `DeniedBinaries`) is new in 27 and is declarative-only.
 - **Apple Intelligence, Siri, External Intelligence and Keyboard restrictions** in `com.apple.applicationaccess` are deprecated from 26.4 in favour of declarative configurations; 27 adds Siri AI and Visual Intelligence restrictions in the declarative model.
 - **Platform SSO** extends to FileVault unlock, lock screen and login window in 27.
@@ -31,10 +31,28 @@ Intune must receive profiles **unsigned**. Intune's native Settings catalog poli
 - `03-network`: Wi-Fi, 802.1X (Wi-Fi and wired), IKEv2 VPN, DNS over HTTPS
 - `04-identity`: Entra Enterprise SSO plug-in, Entra Platform SSO, SCEP, managed domains
 - `05-system-apps`: managed login items, system extensions, Setup Assistant, printing, login window, Finder, Safari
-- `06-privacy-pppc`: PPPC examples (no Accessibility)
+- `06-privacy-pppc`: per-app "full permissions" PPPC for Chrome, Edge, Firefox, Teams, Zoom, Office, OneDrive, Defender and Claude Desktop, plus a template (see [PPPC notes](#pppc-profiles-full-permissions))
 - `07-browsers`: Chrome, Edge and Firefox hardening, Level 1 and Level 2 each (see [browser notes](#browser-profiles-cis-aligned) and `07-browsers/POLICY-MATRIX.md`)
 - `legacy-macos-26-only`: software update and Apple Intelligence restriction keys that are removed or deprecated
 - `tools/`: `generate.py` (rebuild everything), `validate.py` (lint), `make-root-cert-profile.py` (turn a PEM/DER into a trusted-root profile)
+
+## PPPC profiles (full permissions)
+
+`06-privacy-pppc` has one profile per app or vendor family. Each grants every privacy service that MDM is able to pre-approve, so users are not prompted:
+
+- **Allowed:** Full Disk Access (`SystemPolicyAllFiles`), Administrator Files, Desktop/Documents/Downloads, network and removable volumes, App Management (`SystemPolicyAppBundles`), other apps' data (`SystemPolicyAppData`), File Provider, Media Library, Contacts, Calendar, Reminders, Photos, Accessibility and input posting (`PostEvent`).
+- **Standard users can approve without admin:** Screen Recording (`ScreenCapture`) and Input Monitoring (`ListenEvent`). Apple only allows `Deny` or `AllowStandardUserToSetSystemService` for these two.
+- **Cannot be granted by MDM:** Camera and Microphone are deny-only. Users still see a one-time prompt per app, and nothing in a profile changes that.
+- **Not included:** Automation/AppleEvents (each needs a named target app) and Bluetooth/Speech Recognition.
+
+Notes:
+
+- **Scope is wide on purpose.** Contacts, Calendar, Photos and Full Disk Access for a browser is far more than most apps need. To narrow it, edit `FULL_ALLOW` in `tools/generate.py` and rebuild.
+- **Accessibility** is deprecated in macOS 27: macOS notifies the user once per app and lets them switch the grant off. Set `INCLUDE_ACCESSIBILITY = False` to leave it out.
+- **Defender** needs more than PPPC: also deploy its system extension, network filter and notification profiles (already in the repository root). The DLP daemon/agent identifiers are from memory of Microsoft's published profile; remove them if you don't use Endpoint DLP.
+- **Claude Desktop** only. Claude Code (CLI) runs inside Terminal or your IDE, so grant those apps instead.
+- **Code requirements** use the standard Developer ID form with each vendor's Team ID: Microsoft `UBF8T346G9`, Google `EQHXZ8M8AV`, Mozilla `43AQ936H96`, Zoom `BJ4HAAB9B3`, Anthropic `Q6L2SF6YDW`. Confirm on a Mac with `codesign -dr - /Applications/<App>.app` before deploying; a wrong Team ID makes the grant silently not apply.
+- **Don't deploy a PPPC profile alongside the older `macOS Apps PPPC.mobileconfig` in the repository root for the same app**, and assign only one profile per app. The earlier `pppc-teams-screen-sharing` profile was removed because these supersede it.
 
 ## Browser profiles (CIS-aligned)
 
@@ -82,8 +100,16 @@ Intune must receive profiles **unsigned**. Intune's native Settings catalog poli
 | 05-system-apps | `safari-settings.mobileconfig` | Safari Settings | User | Yes | Yes | User channel - edit HomePage. |
 | 05-system-apps | `setup-assistant-skip.mobileconfig` | Setup Assistant - Skip Panes | System | Yes | Yes | ADE skip keys are set in the Intune enrollment profile. |
 | 05-system-apps | `system-extensions-template.mobileconfig` | System Extensions (template) | System | Yes | Yes | Template - edit Team ID/bundle IDs. |
-| 06-privacy-pppc | `pppc-teams-screen-sharing.mobileconfig` | PPPC - Teams and Zoom Screen Recording | System | Yes | Yes (no Accessibility) | Avoid Accessibility service entries - deprecated in macOS 27. |
+| 06-privacy-pppc | `pppc-claude-desktop.mobileconfig` | PPPC - Claude Desktop | System | Yes | Yes (Accessibility deprecated) | Claude Code (CLI) runs inside Terminal/IDE; grant those separately. |
+| 06-privacy-pppc | `pppc-google-chrome.mobileconfig` | PPPC - Google Chrome | System | Yes | Yes (Accessibility deprecated) | Verify code requirement with codesign -dr -. |
+| 06-privacy-pppc | `pppc-microsoft-defender.mobileconfig` | PPPC - Microsoft Defender for Endpoint | System | Yes | Yes (Accessibility deprecated) | Also deploy the Defender system extension, network filter and notification profiles (repo root). |
+| 06-privacy-pppc | `pppc-microsoft-edge.mobileconfig` | PPPC - Microsoft Edge | System | Yes | Yes (Accessibility deprecated) | Verify code requirement with codesign -dr -. |
+| 06-privacy-pppc | `pppc-microsoft-office.mobileconfig` | PPPC - Microsoft Office (Word, Excel, PowerPoint, Outlook, OneNote) | System | Yes | Yes (Accessibility deprecated) | Verify code requirement with codesign -dr -. |
+| 06-privacy-pppc | `pppc-microsoft-onedrive.mobileconfig` | PPPC - Microsoft OneDrive | System | Yes | Yes (Accessibility deprecated) | Verify code requirement with codesign -dr -. |
+| 06-privacy-pppc | `pppc-microsoft-teams.mobileconfig` | PPPC - Microsoft Teams | System | Yes | Yes (Accessibility deprecated) | Covers new Teams and the retired classic client. |
+| 06-privacy-pppc | `pppc-mozilla-firefox.mobileconfig` | PPPC - Mozilla Firefox | System | Yes | Yes (Accessibility deprecated) | Verify code requirement with codesign -dr -. |
 | 06-privacy-pppc | `pppc-template.mobileconfig` | PPPC (template) | System | Yes | Yes (deprecated keys) | PPPC keys deprecated in 27 but still work through the 27 cycle. |
+| 06-privacy-pppc | `pppc-zoom.mobileconfig` | PPPC - Zoom Workplace | System | Yes | Yes (Accessibility deprecated) | Verify code requirement with codesign -dr -. |
 | 07-browsers | `chrome-cis-level1.mobileconfig` | Google Chrome - CIS-aligned Level 1 | System | Yes | Yes | Update policy (Keystone) and Chrome Browser Cloud Management are not set here. AllowOutdatedPlugins is obsolete and omitted. Add approved IDs to ExtensionInstallAllowlist. |
 | 07-browsers | `chrome-cis-level2.mobileconfig` | Google Chrome - CIS-aligned Level 2 (superset of Level 1) | System | Yes | Yes | Superset of Level 1. |
 | 07-browsers | `edge-cis-level1.mobileconfig` | Microsoft Edge - CIS-aligned Level 1 | System | Yes | Yes | GamerModeEnabled and LinkedAccountEnabled are obsolete and omitted. Add approved IDs to ExtensionInstallAllowlist. Confirm in edge://policy. |
@@ -110,7 +136,8 @@ On a Mac you can also run `plutil -lint file.mobileconfig`.
 - `filevault-enable-no-escrow` does not escrow the recovery key. Use it for testing only.
 - The Apple Intelligence restriction keys are from memory of Apple's schema and are deprecated; check them against Apple's current device management documentation before relying on them.
 - Intune's `{{DEVICEREGISTRATION}}` token in the Platform SSO profile is replaced by Intune at deployment; Intune's native Platform SSO policy is the supported path for new deployments.
-- Microsoft Team ID `UBF8T346G9` and Zoom `BJ4HAAB9B3` are used in the examples; confirm the code requirements on your installed app versions with `codesign -dr - /Applications/<App>.app`.
+- The `pppc-template` and all PPPC profiles use Team IDs from public knowledge, not from your installed builds; confirm each code requirement with `codesign -dr - /Applications/<App>.app`.
+- An earlier revision of the PPPC helper built a code requirement with an unparenthesised `or`, which could match any app signed by the same Team ID. It now uses the standard Developer ID requirement.
 
 ## Sources
 

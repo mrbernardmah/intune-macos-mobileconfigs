@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.pppc-claude-desktop</string>
+	<key>PayloadUUID</key>
+	<string>EB105CFB-D612-5EE8-B015-5D8748794A2B</string>
+	<key>PayloadDisplayName</key>
+	<string>PPPC - Claude Desktop</string>
+	<key>PayloadDescription</key>
+	<string>PPPC grants for: Claude Desktop. Grants every service MDM is allowed to pre-approve (files/folders, Contacts, Calendar, Reminders, Photos, Accessibility, input events); Screen Recording and Input Monitoring are set so standard users can approve without admin. Camera and Microphone cannot be pre-approved by MDM. </string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.TCC.configuration-profile-policy</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.pppc-claude-desktop.1</string>
+			<key>PayloadUUID</key>
+			<string>E6D48D9F-83E8-5B16-9E63-F67E58BA015C</string>
+			<key>PayloadDisplayName</key>
+			<string>Privacy Preferences</string>
+			<key>Services</key>
+			<dict>
+				<key>SystemPolicyAllFiles</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>SystemPolicySysAdminFiles</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>SystemPolicyDesktopFolder</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>SystemPolicyDocumentsFolder</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>SystemPolicyDownloadsFolder</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>SystemPolicyNetworkVolumes</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>SystemPolicyRemovableVolumes</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>SystemPolicyAppBundles</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>SystemPolicyAppData</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>FileProviderPresence</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>MediaLibrary</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>AddressBook</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>Calendar</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>Reminders</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>Photos</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>Accessibility</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>PostEvent</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>ScreenCapture</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>AllowStandardUserToSetSystemService</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+				<key>ListenEvent</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.anthropic.claudefordesktop</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.anthropic.claudefordesktop" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Q6L2SF6YDW</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>AllowStandardUserToSetSystemService</string>
+						<key>Comment</key>
+						<string>Claude Desktop</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
