@@ -417,6 +417,186 @@ profile(F, "restrictions-apple-intelligence", "Restrictions - Apple Intelligence
         os27="Deprecated", note="Deprecated 26.4. Verify keys against Apple's schema.")
 
 # ===========================================================================
+# 07 - Browsers (aligned with CIS Benchmark themes)
+# ===========================================================================
+# NOTE: the CIS Chrome and Edge benchmarks are written for Windows/Group Policy and the
+# Firefox benchmark for ESR/GPO; there is no macOS-specific edition. These profiles map the
+# recommended *policy settings* to macOS managed preferences. They are not CIS certified.
+# Level 2 profiles are a SUPERSET of Level 1 - assign one or the other, never both.
+F = "07-browsers"
+MATRIX = {}  # browser -> {policy: (l1, l2)}
+
+_CHROME_L1 = {
+    "ExtensionInstallBlocklist": ["*"],
+    "ExtensionInstallAllowlist": [],            # add approved extension IDs
+    "BlockExternalExtensions": True,
+    "SafeBrowsingProtectionLevel": 1,
+    "DisableSafeBrowsingProceedAnyway": True,
+    "BlockThirdPartyCookies": True,
+    "SitePerProcess": True,
+    "EnableDoNotTrack": True,
+    "SSLVersionMin": "tls1.2",
+    "DnsOverHttpsMode": "automatic",
+    "DefaultPopupsSetting": 2,
+    "DefaultGeolocationSetting": 3,
+    "DefaultInsecureContentSetting": 2,
+    "DefaultFileSystemWriteGuardSetting": 2,
+    "BasicAuthOverHttpEnabled": False,
+    "AllowCrossOriginAuthPrompt": False,
+    "EnableMediaRouter": False,
+    "DownloadRestrictions": 1,
+    "PasswordLeakDetectionEnabled": True,
+    "AutofillCreditCardEnabled": False,
+    "RelaunchNotification": 2,
+    "RelaunchNotificationPeriod": 604800000,
+    "MetricsReportingEnabled": False,
+}
+_CHROME_L2 = {
+    "SafeBrowsingProtectionLevel": 2,
+    "DefaultGeolocationSetting": 2,
+    "DownloadRestrictions": 2,
+    "PasswordManagerEnabled": False,
+    "AutofillAddressEnabled": False,
+    "SpellCheckServiceEnabled": False,
+    "SyncDisabled": True,
+    "BrowserSignin": 0,
+}
+
+_EDGE_L1 = {
+    "ExtensionInstallBlocklist": ["*"],
+    "ExtensionInstallAllowlist": [],
+    "BlockExternalExtensions": True,
+    "SmartScreenEnabled": True,
+    "SmartScreenPuaEnabled": True,
+    "PreventSmartScreenPromptOverride": True,
+    "PreventSmartScreenPromptOverrideForFiles": True,
+    "TyposquattingCheckerEnabled": True,
+    "EnhanceSecurityMode": 1,
+    "BlockThirdPartyCookies": True,
+    "SitePerProcess": True,
+    "SSLVersionMin": "tls1.2",
+    "DnsOverHttpsMode": "automatic",
+    "DefaultPopupsSetting": 2,
+    "DefaultGeolocationSetting": 2,
+    "DefaultInsecureContentSetting": 2,
+    "DefaultFileSystemWriteGuardSetting": 2,
+    "DefaultAutomaticDownloadsSetting": 2,
+    "BasicAuthOverHttpEnabled": False,
+    "AllowCrossOriginAuthPrompt": False,
+    "GuidedSwitchEnabled": False,
+    "EnableMediaRouter": False,
+    "DownloadRestrictions": 1,
+    "TrackingPrevention": 2,
+    "DiagnosticData": 1,
+    "HideFirstRunExperience": True,
+    "RelaunchNotification": 2,
+    "RelaunchNotificationPeriod": 604800000,
+}
+_EDGE_L2 = {
+    "EnhanceSecurityMode": 2,
+    "TrackingPrevention": 3,
+    "DownloadRestrictions": 2,
+    "DiagnosticData": 0,
+    "PasswordManagerEnabled": False,
+    "PaymentMethodQueryEnabled": False,
+    "NetworkPredictionOptions": 2,
+    "PersonalizationReportingEnabled": False,
+    "EdgeShoppingAssistantEnabled": False,
+    "SyncDisabled": True,
+}
+
+_FF_L1 = {
+    "EnterprisePoliciesEnabled": True,
+    "DisableTelemetry": True,
+    "DisableFirefoxStudies": True,
+    "DisablePocket": True,
+    "DisableFeedbackCommands": True,
+    "DontCheckDefaultBrowser": True,
+    "DisableAppUpdate": False,
+    "AppAutoUpdate": True,
+    "BlockAboutConfig": True,
+    "DisableSafeMode": True,
+    "SSLVersionMin": "tls1.2",
+    "HttpsOnlyMode": "enabled",
+    "AutofillCreditCardEnabled": False,
+    "InstallAddonsPermission": {"Default": False},
+    "ExtensionSettings": {"*": {"installation_mode": "blocked",
+                                "blocked_install_message": "Extensions are restricted by IT policy."}},
+    "PopupBlocking": {"Default": True, "Locked": True},
+    "Cookies": {"Behavior": "reject-tracker-and-partition-foreign", "Locked": True},
+    "EnableTrackingProtection": {"Value": True, "Locked": True, "Cryptomining": True,
+                                 "Fingerprinting": True, "EmailTracking": True},
+    "DNSOverHTTPS": {"Enabled": True, "Locked": True},
+    "FirefoxSuggest": {"WebSuggestions": False, "SponsoredSuggestions": False,
+                       "ImproveSuggest": False, "Locked": True},
+    "UserMessaging": {"WhatsNew": False, "ExtensionRecommendations": False,
+                      "FeatureRecommendations": False, "UrlbarInterventions": False,
+                      "SkipOnboarding": True, "MoreFromMozilla": False, "Locked": True},
+}
+_FF_L2 = {
+    "HttpsOnlyMode": "force_enabled",
+    "PasswordManagerEnabled": False,
+    "OfferToSaveLogins": False,
+    "AutofillAddressEnabled": False,
+    "DisableFormHistory": True,
+    "DisableFirefoxAccounts": True,
+    "NetworkPrediction": False,
+    "SearchSuggestEnabled": False,
+    "BlockAboutProfiles": True,
+    "Cookies": {"Behavior": "reject-foreign", "Locked": True},
+    "Permissions": {"Location": {"BlockNewRequests": True, "Locked": True},
+                    "Camera": {"BlockNewRequests": True, "Locked": True},
+                    "Microphone": {"BlockNewRequests": True, "Locked": True},
+                    "Notifications": {"BlockNewRequests": True, "Locked": True}},
+    "SanitizeOnShutdown": {"Cache": True, "Cookies": True, "Downloads": True,
+                           "FormData": True, "History": True, "Sessions": True,
+                           "OfflineApps": True, "Locked": True},
+    "GenerativeAI": {"Enabled": False, "Locked": True},
+}
+
+_BROWSERS = [
+    ("chrome", "Google Chrome", "com.google.Chrome", _CHROME_L1, _CHROME_L2,
+     "Update policy (Keystone) and Chrome Browser Cloud Management are not set here. "
+     "AllowOutdatedPlugins is obsolete and omitted. Add approved IDs to ExtensionInstallAllowlist."),
+    ("edge", "Microsoft Edge", "com.microsoft.Edge", _EDGE_L1, _EDGE_L2,
+     "GamerModeEnabled and LinkedAccountEnabled are obsolete and omitted. Add approved IDs to "
+     "ExtensionInstallAllowlist. Confirm in edge://policy."),
+    ("firefox", "Mozilla Firefox", "org.mozilla.firefox", _FF_L1, _FF_L2,
+     "Blocks all extensions by default (ExtensionSettings). Add allowed add-on IDs. "
+     "Confirm in about:policies."),
+]
+
+for slug, label, domain, l1, l2, extra in _BROWSERS:
+    l2_full = {**l1, **l2}
+    MATRIX[label] = {k: (l1.get(k), l2_full.get(k)) for k in sorted(l2_full)}
+    for lvl, content in (("level1", l1), ("level2", l2_full)):
+        tag = "Level 1" if lvl == "level1" else "Level 2 (superset of Level 1)"
+        profile(F, f"{slug}-cis-{lvl}", f"{label} - CIS-aligned {tag}",
+                f"{label} managed preferences aligned with CIS Benchmark recommendations ({tag}). "
+                "CIS publishes these benchmarks for Windows/GPO; settings are translated to macOS here. "
+                "Not CIS certified. "
+                + ("Assign this OR the Level 1 profile, not both." if lvl == "level2" else
+                   "Assign this OR the Level 2 profile, not both."),
+                [(domain, f"{label} policies", dict(content))],
+                note=extra if lvl == "level1" else "Superset of Level 1.")
+
+
+def write_matrix():
+    lines = ["# Browser policy matrix (CIS-aligned)", "",
+             "Generated by `tools/generate.py`. Level 2 profiles include every Level 1 setting "
+             "plus the overrides/additions shown. Complex values are shown as JSON.", ""]
+    import json
+    for label, rows in MATRIX.items():
+        lines += [f"## {label}", "", "| Policy | Level 1 | Level 2 |", "|---|---|---|"]
+        for k, (a, b) in rows.items():
+            fa = "not set" if a is None else f"`{json.dumps(a)}`"
+            fb = "not set" if b is None else f"`{json.dumps(b)}`"
+            lines.append(f"| `{k}` | {fa} | {fb} |")
+        lines.append("")
+    (ROOT / "07-browsers" / "POLICY-MATRIX.md").write_text("\n".join(lines))
+
+
+# ===========================================================================
 # README table
 # ===========================================================================
 def build_readme_table():
@@ -436,4 +616,5 @@ if __name__ == "__main__":
     head, rest = text.split(start, 1)
     _, tail = rest.split(end, 1)
     readme.write_text(f"{head}{start}\n{table}\n{end}{tail}")
+    write_matrix()
     print(f"Generated {len(SPECS)} profiles")

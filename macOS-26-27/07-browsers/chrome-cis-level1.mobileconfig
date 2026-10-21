@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.chrome-cis-level1</string>
+	<key>PayloadUUID</key>
+	<string>5F1B55AB-0D3A-547D-BB9F-B6C43BBA39D7</string>
+	<key>PayloadDisplayName</key>
+	<string>Google Chrome - CIS-aligned Level 1</string>
+	<key>PayloadDescription</key>
+	<string>Google Chrome managed preferences aligned with CIS Benchmark recommendations (Level 1). CIS publishes these benchmarks for Windows/GPO; settings are translated to macOS here. Not CIS certified. Assign this OR the Level 2 profile, not both.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.google.Chrome</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.chrome-cis-level1.1</string>
+			<key>PayloadUUID</key>
+			<string>0FE0FD7B-C503-56CD-A348-6CF022EC51A0</string>
+			<key>PayloadDisplayName</key>
+			<string>Google Chrome policies</string>
+			<key>ExtensionInstallBlocklist</key>
+			<array>
+				<string>*</string>
+			</array>
+			<key>ExtensionInstallAllowlist</key>
+			<array/>
+			<key>BlockExternalExtensions</key>
+			<true/>
+			<key>SafeBrowsingProtectionLevel</key>
+			<integer>1</integer>
+			<key>DisableSafeBrowsingProceedAnyway</key>
+			<true/>
+			<key>BlockThirdPartyCookies</key>
+			<true/>
+			<key>SitePerProcess</key>
+			<true/>
+			<key>EnableDoNotTrack</key>
+			<true/>
+			<key>SSLVersionMin</key>
+			<string>tls1.2</string>
+			<key>DnsOverHttpsMode</key>
+			<string>automatic</string>
+			<key>DefaultPopupsSetting</key>
+			<integer>2</integer>
+			<key>DefaultGeolocationSetting</key>
+			<integer>3</integer>
+			<key>DefaultInsecureContentSetting</key>
+			<integer>2</integer>
+			<key>DefaultFileSystemWriteGuardSetting</key>
+			<integer>2</integer>
+			<key>BasicAuthOverHttpEnabled</key>
+			<false/>
+			<key>AllowCrossOriginAuthPrompt</key>
+			<false/>
+			<key>EnableMediaRouter</key>
+			<false/>
+			<key>DownloadRestrictions</key>
+			<integer>1</integer>
+			<key>PasswordLeakDetectionEnabled</key>
+			<true/>
+			<key>AutofillCreditCardEnabled</key>
+			<false/>
+			<key>RelaunchNotification</key>
+			<integer>2</integer>
+			<key>RelaunchNotificationPeriod</key>
+			<integer>604800000</integer>
+			<key>MetricsReportingEnabled</key>
+			<false/>
+		</dict>
+	</array>
+</dict>
+</plist>

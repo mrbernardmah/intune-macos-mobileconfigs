@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.chrome-cis-level2</string>
+	<key>PayloadUUID</key>
+	<string>794FEE18-B540-5C6F-94AE-1F72404B931A</string>
+	<key>PayloadDisplayName</key>
+	<string>Google Chrome - CIS-aligned Level 2 (superset of Level 1)</string>
+	<key>PayloadDescription</key>
+	<string>Google Chrome managed preferences aligned with CIS Benchmark recommendations (Level 2 (superset of Level 1)). CIS publishes these benchmarks for Windows/GPO; settings are translated to macOS here. Not CIS certified. Assign this OR the Level 1 profile, not both.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.google.Chrome</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.chrome-cis-level2.1</string>
+			<key>PayloadUUID</key>
+			<string>DC810B08-75BB-56AF-8FC8-3B19DF54164C</string>
+			<key>PayloadDisplayName</key>
+			<string>Google Chrome policies</string>
+			<key>ExtensionInstallBlocklist</key>
+			<array>
+				<string>*</string>
+			</array>
+			<key>ExtensionInstallAllowlist</key>
+			<array/>
+			<key>BlockExternalExtensions</key>
+			<true/>
+			<key>SafeBrowsingProtectionLevel</key>
+			<integer>2</integer>
+			<key>DisableSafeBrowsingProceedAnyway</key>
+			<true/>
+			<key>BlockThirdPartyCookies</key>
+			<true/>
+			<key>SitePerProcess</key>
+			<true/>
+			<key>EnableDoNotTrack</key>
+			<true/>
+			<key>SSLVersionMin</key>
+			<string>tls1.2</string>
+			<key>DnsOverHttpsMode</key>
+			<string>automatic</string>
+			<key>DefaultPopupsSetting</key>
+			<integer>2</integer>
+			<key>DefaultGeolocationSetting</key>
+			<integer>2</integer>
+			<key>DefaultInsecureContentSetting</key>
+			<integer>2</integer>
+			<key>DefaultFileSystemWriteGuardSetting</key>
+			<integer>2</integer>
+			<key>BasicAuthOverHttpEnabled</key>
+			<false/>
+			<key>AllowCrossOriginAuthPrompt</key>
+			<false/>
+			<key>EnableMediaRouter</key>
+			<false/>
+			<key>DownloadRestrictions</key>
+			<integer>2</integer>
+			<key>PasswordLeakDetectionEnabled</key>
+			<true/>
+			<key>AutofillCreditCardEnabled</key>
+			<false/>
+			<key>RelaunchNotification</key>
+			<integer>2</integer>
+			<key>RelaunchNotificationPeriod</key>
+			<integer>604800000</integer>
+			<key>MetricsReportingEnabled</key>
+			<false/>
+			<key>PasswordManagerEnabled</key>
+			<false/>
+			<key>AutofillAddressEnabled</key>
+			<false/>
+			<key>SpellCheckServiceEnabled</key>
+			<false/>
+			<key>SyncDisabled</key>
+			<true/>
+			<key>BrowserSignin</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -32,8 +32,21 @@ Intune must receive profiles **unsigned**. Intune's native Settings catalog poli
 - `04-identity`: Entra Enterprise SSO plug-in, Entra Platform SSO, SCEP, managed domains
 - `05-system-apps`: managed login items, system extensions, Setup Assistant, printing, login window, Finder, Safari
 - `06-privacy-pppc`: PPPC examples (no Accessibility)
+- `07-browsers`: Chrome, Edge and Firefox hardening, Level 1 and Level 2 each (see [browser notes](#browser-profiles-cis-aligned) and `07-browsers/POLICY-MATRIX.md`)
 - `legacy-macos-26-only`: software update and Apple Intelligence restriction keys that are removed or deprecated
 - `tools/`: `generate.py` (rebuild everything), `validate.py` (lint), `make-root-cert-profile.py` (turn a PEM/DER into a trusted-root profile)
+
+## Browser profiles (CIS-aligned)
+
+`07-browsers` holds six profiles: Chrome (`com.google.Chrome`), Edge (`com.microsoft.Edge`) and Firefox (`org.mozilla.firefox`), each at Level 1 and Level 2.
+
+- **There is no macOS edition of these benchmarks.** CIS publishes the Chrome and Edge benchmarks for Windows with Group Policy, and the Firefox benchmark for ESR (102/38) and GPO. These profiles take the policy settings that the benchmarks recommend and express them as macOS managed preferences. They are *aligned with* CIS themes, **not CIS certified**, and benchmark text/IDs are deliberately not reproduced. Check them against the current official benchmark if you need audit evidence.
+- **Level 2 is a superset of Level 1.** Assign one level per browser, never both, because two profiles setting the same domain can conflict.
+- **Level 1** is the practical baseline (Safe Browsing / SmartScreen, TLS 1.2 minimum, popup and insecure-content blocking, third-party cookie blocking, extension allowlisting, telemetry off). **Level 2** adds stricter privacy and lockdown (enhanced protection, password manager and autofill off, sync off, stricter downloads, Firefox sanitise-on-shutdown and blocked permission prompts).
+- **All extensions are blocked by default** in every profile. Add approved IDs to `ExtensionInstallAllowlist` (Chrome/Edge) or `ExtensionSettings` (Firefox) in `tools/generate.py` and rebuild, otherwise users lose password-manager and other extensions.
+- Level 2 can break workflows (no saved passwords, cleared history/cookies on Firefox exit, blocked camera/microphone prompts). Pilot first.
+- Obsolete policies (Chrome `AllowOutdatedPlugins`, Edge `GamerModeEnabled` and `LinkedAccountEnabled`) are omitted. Browser update channels are managed separately (Chrome Keystone, Microsoft AutoUpdate, Firefox `AppAutoUpdate` is set).
+- The Chrome recommendation list came from a third-party mirror of the v3.0.0 benchmark, and Edge details from Microsoft's policy index plus the v3.0.0 benchmark PDF's visible text, so a few settings may differ from the current official versions. After deployment, confirm each policy at `chrome://policy`, `edge://policy` or `about:policies`.
 
 ## Profiles
 
@@ -71,6 +84,12 @@ Intune must receive profiles **unsigned**. Intune's native Settings catalog poli
 | 05-system-apps | `system-extensions-template.mobileconfig` | System Extensions (template) | System | Yes | Yes | Template - edit Team ID/bundle IDs. |
 | 06-privacy-pppc | `pppc-teams-screen-sharing.mobileconfig` | PPPC - Teams and Zoom Screen Recording | System | Yes | Yes (no Accessibility) | Avoid Accessibility service entries - deprecated in macOS 27. |
 | 06-privacy-pppc | `pppc-template.mobileconfig` | PPPC (template) | System | Yes | Yes (deprecated keys) | PPPC keys deprecated in 27 but still work through the 27 cycle. |
+| 07-browsers | `chrome-cis-level1.mobileconfig` | Google Chrome - CIS-aligned Level 1 | System | Yes | Yes | Update policy (Keystone) and Chrome Browser Cloud Management are not set here. AllowOutdatedPlugins is obsolete and omitted. Add approved IDs to ExtensionInstallAllowlist. |
+| 07-browsers | `chrome-cis-level2.mobileconfig` | Google Chrome - CIS-aligned Level 2 (superset of Level 1) | System | Yes | Yes | Superset of Level 1. |
+| 07-browsers | `edge-cis-level1.mobileconfig` | Microsoft Edge - CIS-aligned Level 1 | System | Yes | Yes | GamerModeEnabled and LinkedAccountEnabled are obsolete and omitted. Add approved IDs to ExtensionInstallAllowlist. Confirm in edge://policy. |
+| 07-browsers | `edge-cis-level2.mobileconfig` | Microsoft Edge - CIS-aligned Level 2 (superset of Level 1) | System | Yes | Yes | Superset of Level 1. |
+| 07-browsers | `firefox-cis-level1.mobileconfig` | Mozilla Firefox - CIS-aligned Level 1 | System | Yes | Yes | Blocks all extensions by default (ExtensionSettings). Add allowed add-on IDs. Confirm in about:policies. |
+| 07-browsers | `firefox-cis-level2.mobileconfig` | Mozilla Firefox - CIS-aligned Level 2 (superset of Level 1) | System | Yes | Yes | Superset of Level 1. |
 | legacy-macos-26-only | `restrictions-apple-intelligence.mobileconfig` | Restrictions - Apple Intelligence (legacy keys) | System | Yes | Deprecated | Deprecated 26.4. Verify keys against Apple's schema. |
 | legacy-macos-26-only | `softwareupdate-legacy.mobileconfig` | Software Update (legacy, macOS 26 only) | System | Yes | No (removed) | Removed in macOS 27.0. Use DDM. |
 <!-- TABLE:END -->
