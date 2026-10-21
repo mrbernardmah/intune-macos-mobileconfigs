@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>User</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.screensaver-lock</string>
+	<key>PayloadUUID</key>
+	<string>D15B507F-2AFC-538C-8141-F55678E535A5</string>
+	<key>PayloadDisplayName</key>
+	<string>Screen Saver and Lock</string>
+	<key>PayloadDescription</key>
+	<string>Starts the screen saver after 10 minutes and requires a password 5 seconds later. User-channel profile.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.screensaver</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.screensaver-lock.1</string>
+			<key>PayloadUUID</key>
+			<string>7B66CF72-75A3-585B-8826-40F4B5F2B29D</string>
+			<key>PayloadDisplayName</key>
+			<string>Screen saver</string>
+			<key>askForPassword</key>
+			<true/>
+			<key>askForPasswordDelay</key>
+			<integer>5</integer>
+			<key>idleTime</key>
+			<integer>600</integer>
+			<key>loginWindowIdleTime</key>
+			<integer>600</integer>
+		</dict>
+	</array>
+</dict>
+</plist>

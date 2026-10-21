@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.restrictions-apple-intelligence</string>
+	<key>PayloadUUID</key>
+	<string>4B509B2C-C1AF-561B-9720-BBFA16FB8B68</string>
+	<key>PayloadDisplayName</key>
+	<string>Restrictions - Apple Intelligence (legacy keys)</string>
+	<key>PayloadDescription</key>
+	<string>Disables Apple Intelligence features using com.apple.applicationaccess keys. Deprecated in macOS 26.4 in favour of declarative configurations; macOS 27 adds a Siri AI restriction in the declarative model only.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.applicationaccess</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.restrictions-apple-intelligence.1</string>
+			<key>PayloadUUID</key>
+			<string>CC8F4FAB-767C-5125-BECC-EC5BF98C3E4E</string>
+			<key>PayloadDisplayName</key>
+			<string>Apple Intelligence</string>
+			<key>allowWritingTools</key>
+			<false/>
+			<key>allowImagePlayground</key>
+			<false/>
+			<key>allowGenmoji</key>
+			<false/>
+			<key>allowMailSummary</key>
+			<false/>
+			<key>allowNotesTranscriptionSummary</key>
+			<false/>
+			<key>allowSafariSummary</key>
+			<false/>
+			<key>allowExternalIntelligenceIntegrations</key>
+			<false/>
+		</dict>
+	</array>
+</dict>
+</plist>

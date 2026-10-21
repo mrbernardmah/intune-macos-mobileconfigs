@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.wifi-wpa2-personal</string>
+	<key>PayloadUUID</key>
+	<string>A96C6AEE-5999-5DB3-871B-05C17B38FE78</string>
+	<key>PayloadDisplayName</key>
+	<string>Wi-Fi - WPA2 Personal (template)</string>
+	<key>PayloadDescription</key>
+	<string>Template. Replace SSID and password before deploying.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.wifi.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.wifi-wpa2-personal.1</string>
+			<key>PayloadUUID</key>
+			<string>4BDD984A-2FD9-5087-B66F-20DE54DF20A1</string>
+			<key>PayloadDisplayName</key>
+			<string>Wi-Fi</string>
+			<key>SSID_STR</key>
+			<string>REPLACE_SSID</string>
+			<key>HIDDEN_NETWORK</key>
+			<false/>
+			<key>AutoJoin</key>
+			<true/>
+			<key>CaptiveBypass</key>
+			<false/>
+			<key>EncryptionType</key>
+			<string>WPA2</string>
+			<key>Password</key>
+			<string>REPLACE_PASSWORD</string>
+			<key>ProxyType</key>
+			<string>None</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.filevault-enable-no-escrow</string>
+	<key>PayloadUUID</key>
+	<string>72F4251E-CF13-5AE2-B4D1-FAC17CDE26BA</string>
+	<key>PayloadDisplayName</key>
+	<string>FileVault - Enable (no escrow)</string>
+	<key>PayloadDescription</key>
+	<string>Enables FileVault at next login. WARNING: this custom profile does NOT escrow the recovery key to Intune. Use Intune's native Endpoint security &gt; Disk encryption &gt; macOS FileVault policy in production.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.MCX.FileVault2</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.filevault-enable-no-escrow.1</string>
+			<key>PayloadUUID</key>
+			<string>CC70514A-BAA1-506C-A126-53CC4E81B61F</string>
+			<key>PayloadDisplayName</key>
+			<string>FileVault</string>
+			<key>Enable</key>
+			<string>On</string>
+			<key>Defer</key>
+			<true/>
+			<key>UserEntersMissingInfo</key>
+			<false/>
+			<key>ShowRecoveryKey</key>
+			<false/>
+			<key>DeferForceAtUserLoginMaxBypassAttempts</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.MCX</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.filevault-enable-no-escrow.2</string>
+			<key>PayloadUUID</key>
+			<string>526573BF-87AC-5166-96CB-7351FDB22C23</string>
+			<key>PayloadDisplayName</key>
+			<string>Prevent FileVault disable</string>
+			<key>dontAllowFDEDisable</key>
+			<true/>
+		</dict>
+	</array>
+</dict>
+</plist>

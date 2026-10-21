@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.passcode-policy</string>
+	<key>PayloadUUID</key>
+	<string>A3F8471F-A576-546E-BF93-952014007AD5</string>
+	<key>PayloadDisplayName</key>
+	<string>Passcode Policy</string>
+	<key>PayloadDescription</key>
+	<string>Local account password complexity. Prefer Intune's native Settings catalog if you also use Platform SSO password sync.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.mobiledevice.passwordpolicy</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.passcode-policy.1</string>
+			<key>PayloadUUID</key>
+			<string>F597E185-ACA4-5681-A484-54EC6AF8FCEB</string>
+			<key>PayloadDisplayName</key>
+			<string>Passcode</string>
+			<key>forcePIN</key>
+			<true/>
+			<key>allowSimple</key>
+			<false/>
+			<key>requireAlphanumeric</key>
+			<true/>
+			<key>minLength</key>
+			<integer>12</integer>
+			<key>minComplexChars</key>
+			<integer>1</integer>
+			<key>maxFailedAttempts</key>
+			<integer>10</integer>
+			<key>pinHistory</key>
+			<integer>5</integer>
+			<key>maxPINAgeInDays</key>
+			<integer>0</integer>
+			<key>maxGracePeriod</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+</dict>
+</plist>

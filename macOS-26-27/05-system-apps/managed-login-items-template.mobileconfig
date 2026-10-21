@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.managed-login-items-template</string>
+	<key>PayloadUUID</key>
+	<string>00A28C27-2A36-5FA6-B9EF-40CF85779DF7</string>
+	<key>PayloadDisplayName</key>
+	<string>Managed Login Items (template)</string>
+	<key>PayloadDescription</key>
+	<string>Template. Pre-approve background items by Team ID, bundle ID prefix or label.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.servicemanagement</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.managed-login-items-template.1</string>
+			<key>PayloadUUID</key>
+			<string>C738898D-B9D8-54A0-8633-F5B55BFFB406</string>
+			<key>PayloadDisplayName</key>
+			<string>Managed login items</string>
+			<key>Rules</key>
+			<array>
+				<dict>
+					<key>RuleType</key>
+					<string>TeamIdentifier</string>
+					<key>RuleValue</key>
+					<string>REPLACE_TEAMID</string>
+					<key>Comment</key>
+					<string>Vendor</string>
+				</dict>
+				<dict>
+					<key>RuleType</key>
+					<string>BundleIdentifierPrefix</string>
+					<key>RuleValue</key>
+					<string>com.example.</string>
+					<key>Comment</key>
+					<string>Example prefix</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

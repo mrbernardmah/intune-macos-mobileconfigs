@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.restrictions-diagnostics-ads</string>
+	<key>PayloadUUID</key>
+	<string>BB589A49-8FA8-5E62-BA39-9F4482B46E99</string>
+	<key>PayloadDisplayName</key>
+	<string>Restrictions - Diagnostics and Ads</string>
+	<key>PayloadDescription</key>
+	<string>Stops diagnostic submission to Apple and limits ad tracking.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.applicationaccess</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.restrictions-diagnostics-ads.1</string>
+			<key>PayloadUUID</key>
+			<string>C47D7C52-8435-5B16-9C0B-49121A20D9EC</string>
+			<key>PayloadDisplayName</key>
+			<string>Diagnostics and ads</string>
+			<key>allowDiagnosticSubmission</key>
+			<false/>
+			<key>allowDiagnosticSubmissionModification</key>
+			<false/>
+			<key>forceLimitAdTracking</key>
+			<true/>
+		</dict>
+	</array>
+</dict>
+</plist>

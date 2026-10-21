@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>User</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.safari-settings</string>
+	<key>PayloadUUID</key>
+	<string>A629032E-A15A-5CAF-B4B7-980713D10F16</string>
+	<key>PayloadDisplayName</key>
+	<string>Safari Settings</string>
+	<key>PayloadDescription</key>
+	<string>Home page, full URL display and safe defaults. macOS 26 also supports declarative Safari configuration for bookmarks, start page and summaries.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.Safari</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.safari-settings.1</string>
+			<key>PayloadUUID</key>
+			<string>BD5814EE-750C-5E62-8596-A74C878CEC0F</string>
+			<key>PayloadDisplayName</key>
+			<string>Safari</string>
+			<key>HomePage</key>
+			<string>https://intranet.example.com</string>
+			<key>ShowFullURLInSmartSearchField</key>
+			<true/>
+			<key>AutoOpenSafeDownloads</key>
+			<false/>
+			<key>SendDoNotTrackHTTPHeader</key>
+			<true/>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.wifi-eap-tls</string>
+	<key>PayloadUUID</key>
+	<string>DB96DE20-B9E3-505C-8265-9EB44A7583F3</string>
+	<key>PayloadDisplayName</key>
+	<string>Wi-Fi - EAP-TLS with SCEP (template)</string>
+	<key>PayloadDescription</key>
+	<string>Template. 802.1X EAP-TLS Wi-Fi with an in-profile SCEP identity. Replace SCEP URL, challenge, SSID and RADIUS names. In Intune, prefer native SCEP/PKCS + Wi-Fi profiles.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.security.scep</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.wifi-eap-tls.1</string>
+			<key>PayloadUUID</key>
+			<string>6A34D077-B5D9-5AA8-91CF-AB5E7899AF78</string>
+			<key>PayloadDisplayName</key>
+			<string>SCEP identity</string>
+			<key>URL</key>
+			<string>https://scep.example.com/certsrv/mscep/mscep.dll</string>
+			<key>Name</key>
+			<string>Wi-Fi identity</string>
+			<key>Subject</key>
+			<array>
+				<array>
+					<array>
+						<string>CN</string>
+						<string>%ComputerName%</string>
+					</array>
+				</array>
+			</array>
+			<key>Challenge</key>
+			<string>REPLACE_CHALLENGE</string>
+			<key>Keysize</key>
+			<integer>2048</integer>
+			<key>KeyType</key>
+			<string>RSA</string>
+			<key>KeyUsage</key>
+			<integer>5</integer>
+			<key>Retries</key>
+			<integer>3</integer>
+			<key>RetryDelay</key>
+			<integer>10</integer>
+		</dict>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.wifi.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.wifi-eap-tls.2</string>
+			<key>PayloadUUID</key>
+			<string>C060686D-5A33-5B49-8B06-509A5431D468</string>
+			<key>PayloadDisplayName</key>
+			<string>Wi-Fi 802.1X</string>
+			<key>SSID_STR</key>
+			<string>REPLACE_SSID</string>
+			<key>HIDDEN_NETWORK</key>
+			<false/>
+			<key>AutoJoin</key>
+			<true/>
+			<key>EncryptionType</key>
+			<string>WPA2</string>
+			<key>ProxyType</key>
+			<string>None</string>
+			<key>PayloadCertificateUUID</key>
+			<string>6A34D077-B5D9-5AA8-91CF-AB5E7899AF78</string>
+			<key>EAPClientConfiguration</key>
+			<dict>
+				<key>AcceptEAPTypes</key>
+				<array>
+					<integer>13</integer>
+				</array>
+				<key>TLSTrustedServerNames</key>
+				<array>
+					<string>radius.example.com</string>
+				</array>
+				<key>TLSMinimumVersion</key>
+				<string>1.2</string>
+				<key>TLSMaximumVersion</key>
+				<string>1.3</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

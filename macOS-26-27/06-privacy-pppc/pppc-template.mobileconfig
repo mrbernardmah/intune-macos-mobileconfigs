@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.pppc-template</string>
+	<key>PayloadUUID</key>
+	<string>62323E77-DA32-5A88-A3A7-731AEC9BE1C7</string>
+	<key>PayloadDisplayName</key>
+	<string>PPPC (template)</string>
+	<key>PayloadDescription</key>
+	<string>Template. Full Disk Access for one app via Team ID. Replace identifier, Team ID and code requirement. Avoid Accessibility; it is deprecated in macOS 27.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.TCC.configuration-profile-policy</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.pppc-template.1</string>
+			<key>PayloadUUID</key>
+			<string>287A84A4-C45A-5AD5-9299-9D7CE905CA44</string>
+			<key>PayloadDisplayName</key>
+			<string>Privacy</string>
+			<key>Services</key>
+			<dict>
+				<key>SystemPolicyAllFiles</key>
+				<array>
+					<dict>
+						<key>Identifier</key>
+						<string>com.example.app</string>
+						<key>IdentifierType</key>
+						<string>bundleID</string>
+						<key>CodeRequirement</key>
+						<string>identifier "com.example.app" and anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = REPLACE_TEAMID</string>
+						<key>StaticCode</key>
+						<false/>
+						<key>Authorization</key>
+						<string>Allow</string>
+						<key>Comment</key>
+						<string>Example app</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

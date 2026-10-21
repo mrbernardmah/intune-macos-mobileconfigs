@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.restrictions-hardening</string>
+	<key>PayloadUUID</key>
+	<string>86E5CFDA-FAA1-56EA-B636-E458EB49E7CC</string>
+	<key>PayloadDisplayName</key>
+	<string>Restrictions - Hardening</string>
+	<key>PayloadDescription</key>
+	<string>Disables AirDrop, manual profile installation and erase-all-content-and-settings.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.applicationaccess</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.restrictions-hardening.1</string>
+			<key>PayloadUUID</key>
+			<string>DB69B3E9-F59C-5061-9802-E73284774E32</string>
+			<key>PayloadDisplayName</key>
+			<string>Hardening</string>
+			<key>allowAirDrop</key>
+			<false/>
+			<key>allowUIConfigurationProfileInstallation</key>
+			<false/>
+			<key>allowEraseContentAndSettings</key>
+			<false/>
+		</dict>
+	</array>
+</dict>
+</plist>

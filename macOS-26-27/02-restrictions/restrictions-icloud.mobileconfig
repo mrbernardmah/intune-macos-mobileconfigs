@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.restrictions-icloud</string>
+	<key>PayloadUUID</key>
+	<string>158DCBDE-6F7B-5D0A-B738-51408352BB19</string>
+	<key>PayloadDisplayName</key>
+	<string>Restrictions - iCloud</string>
+	<key>PayloadDescription</key>
+	<string>Blocks iCloud sync of documents, desktop, keychain and other data.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.applicationaccess</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.restrictions-icloud.1</string>
+			<key>PayloadUUID</key>
+			<string>7D145C80-DF14-5B88-9BF0-3DF68F58D16A</string>
+			<key>PayloadDisplayName</key>
+			<string>iCloud restrictions</string>
+			<key>allowCloudDocumentSync</key>
+			<false/>
+			<key>allowCloudDesktopAndDocuments</key>
+			<false/>
+			<key>allowCloudKeychainSync</key>
+			<false/>
+			<key>allowCloudMail</key>
+			<false/>
+			<key>allowCloudAddressBook</key>
+			<false/>
+			<key>allowCloudCalendar</key>
+			<false/>
+			<key>allowCloudReminders</key>
+			<false/>
+			<key>allowCloudBookmarks</key>
+			<false/>
+			<key>allowCloudNotes</key>
+			<false/>
+			<key>allowCloudPhotoLibrary</key>
+			<false/>
+		</dict>
+	</array>
+</dict>
+</plist>

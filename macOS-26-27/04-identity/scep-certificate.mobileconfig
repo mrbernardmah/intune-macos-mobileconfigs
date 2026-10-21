@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.scep-certificate</string>
+	<key>PayloadUUID</key>
+	<string>B7FCA2FB-BD7F-5C92-A460-C00D766F0926</string>
+	<key>PayloadDisplayName</key>
+	<string>SCEP Certificate (template)</string>
+	<key>PayloadDescription</key>
+	<string>Template. Standalone SCEP client identity. In Intune use native SCEP profiles with the Certificate connector where possible.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.security.scep</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.scep-certificate.1</string>
+			<key>PayloadUUID</key>
+			<string>451998C9-BD8D-56A7-9ADF-801A600D3129</string>
+			<key>PayloadDisplayName</key>
+			<string>SCEP</string>
+			<key>URL</key>
+			<string>https://scep.example.com/certsrv/mscep/mscep.dll</string>
+			<key>Name</key>
+			<string>Device identity</string>
+			<key>Subject</key>
+			<array>
+				<array>
+					<array>
+						<string>CN</string>
+						<string>%ComputerName%</string>
+					</array>
+				</array>
+			</array>
+			<key>Challenge</key>
+			<string>REPLACE_CHALLENGE</string>
+			<key>Keysize</key>
+			<integer>2048</integer>
+			<key>KeyType</key>
+			<string>RSA</string>
+			<key>KeyUsage</key>
+			<integer>5</integer>
+			<key>Retries</key>
+			<integer>3</integer>
+			<key>RetryDelay</key>
+			<integer>10</integer>
+		</dict>
+	</array>
+</dict>
+</plist>

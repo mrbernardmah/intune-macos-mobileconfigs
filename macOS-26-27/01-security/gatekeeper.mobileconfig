@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.gatekeeper</string>
+	<key>PayloadUUID</key>
+	<string>0EF1D970-E274-5421-B45E-574F1CEF1DAA</string>
+	<key>PayloadDisplayName</key>
+	<string>Gatekeeper</string>
+	<key>PayloadDescription</key>
+	<string>Enforces Gatekeeper (App Store and identified developers) and prevents users overriding it.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.systempolicy.control</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.gatekeeper.1</string>
+			<key>PayloadUUID</key>
+			<string>D1817ACB-36D2-5BD4-B0FC-D6CEFB558703</string>
+			<key>PayloadDisplayName</key>
+			<string>Gatekeeper</string>
+			<key>EnableAssessment</key>
+			<true/>
+			<key>AllowIdentifiedDevelopers</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.systempolicy.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.gatekeeper.2</string>
+			<key>PayloadUUID</key>
+			<string>8AAAA9DF-8BEB-5D64-9E73-38C092AC5A31</string>
+			<key>PayloadDisplayName</key>
+			<string>Gatekeeper override</string>
+			<key>DisableOverride</key>
+			<true/>
+		</dict>
+	</array>
+</dict>
+</plist>

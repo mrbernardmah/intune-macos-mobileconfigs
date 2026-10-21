@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.entra-enterprise-sso-redirect</string>
+	<key>PayloadUUID</key>
+	<string>9F776E2B-5D82-5389-B319-E0303C9E605B</string>
+	<key>PayloadDisplayName</key>
+	<string>Microsoft Entra - Enterprise SSO Plug-in</string>
+	<key>PayloadDescription</key>
+	<string>Redirect SSO app extension using the Company Portal extension (Microsoft Enterprise SSO plug-in). Requires Company Portal installed.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.extensiblesso</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.entra-enterprise-sso-redirect.1</string>
+			<key>PayloadUUID</key>
+			<string>B3A1EBDD-CDD3-531A-85AE-16EA4FEB5672</string>
+			<key>PayloadDisplayName</key>
+			<string>Enterprise SSO</string>
+			<key>ExtensionIdentifier</key>
+			<string>com.microsoft.CompanyPortalMac.ssoextension</string>
+			<key>TeamIdentifier</key>
+			<string>UBF8T346G9</string>
+			<key>Type</key>
+			<string>Redirect</string>
+			<key>URLs</key>
+			<array>
+				<string>https://login.microsoftonline.com</string>
+				<string>https://login.microsoft.com</string>
+				<string>https://sts.windows.net</string>
+				<string>https://login.partner.microsoftonline.cn</string>
+				<string>https://login.chinacloudapi.cn</string>
+				<string>https://login.microsoftonline.us</string>
+				<string>https://login-us.microsoftonline.com</string>
+			</array>
+			<key>ScreenLockedBehavior</key>
+			<string>DoNotHandle</string>
+			<key>ExtensionData</key>
+			<dict>
+				<key>AppPrefixAllowList</key>
+				<string>com.microsoft.,com.apple.</string>
+				<key>browser_sso_interaction_enabled</key>
+				<integer>1</integer>
+				<key>disable_explicit_app_prompt</key>
+				<integer>1</integer>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

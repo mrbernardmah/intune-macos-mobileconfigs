@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>User</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.finder-settings</string>
+	<key>PayloadUUID</key>
+	<string>07C8BCC5-46AE-5DA6-B5E0-C6F676BA2BAB</string>
+	<key>PayloadDisplayName</key>
+	<string>Finder Settings</string>
+	<key>PayloadDescription</key>
+	<string>Shows external/removable media and mounted servers on the desktop; hides internal disks.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.finder</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.finder-settings.1</string>
+			<key>PayloadUUID</key>
+			<string>613921F6-5EB6-5672-84CE-637E02DF87E5</string>
+			<key>PayloadDisplayName</key>
+			<string>Finder</string>
+			<key>ShowHardDrivesOnDesktop</key>
+			<false/>
+			<key>ShowExternalHardDrivesOnDesktop</key>
+			<true/>
+			<key>ShowMountedServersOnDesktop</key>
+			<true/>
+			<key>ShowRemovableMediaOnDesktop</key>
+			<true/>
+			<key>ProhibitConnectTo</key>
+			<false/>
+			<key>WarnOnEmptyTrash</key>
+			<true/>
+		</dict>
+	</array>
+</dict>
+</plist>

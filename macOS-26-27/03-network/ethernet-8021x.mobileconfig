@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.ethernet-8021x</string>
+	<key>PayloadUUID</key>
+	<string>84403504-8462-5CB7-BC5C-8B636B14ABEC</string>
+	<key>PayloadDisplayName</key>
+	<string>Ethernet - 802.1X EAP-TLS (template)</string>
+	<key>PayloadDescription</key>
+	<string>Template. Wired 802.1X with an in-profile SCEP identity.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.security.scep</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.ethernet-8021x.1</string>
+			<key>PayloadUUID</key>
+			<string>16B8E4FE-5CCD-5510-8C89-A2213EE7B53C</string>
+			<key>PayloadDisplayName</key>
+			<string>SCEP identity</string>
+			<key>URL</key>
+			<string>https://scep.example.com/certsrv/mscep/mscep.dll</string>
+			<key>Name</key>
+			<string>Ethernet identity</string>
+			<key>Subject</key>
+			<array>
+				<array>
+					<array>
+						<string>CN</string>
+						<string>%ComputerName%</string>
+					</array>
+				</array>
+			</array>
+			<key>Challenge</key>
+			<string>REPLACE_CHALLENGE</string>
+			<key>Keysize</key>
+			<integer>2048</integer>
+			<key>KeyType</key>
+			<string>RSA</string>
+			<key>KeyUsage</key>
+			<integer>5</integer>
+			<key>Retries</key>
+			<integer>3</integer>
+			<key>RetryDelay</key>
+			<integer>10</integer>
+		</dict>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.firstethernet.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.ethernet-8021x.2</string>
+			<key>PayloadUUID</key>
+			<string>9E31E968-0B06-530C-8D6B-15C2F4D88925</string>
+			<key>PayloadDisplayName</key>
+			<string>Ethernet 802.1X</string>
+			<key>Interface</key>
+			<string>FirstActiveEthernet</string>
+			<key>AutoJoin</key>
+			<true/>
+			<key>AuthenticationMethod</key>
+			<string></string>
+			<key>SetupModes</key>
+			<array>
+				<string>System</string>
+			</array>
+			<key>PayloadCertificateUUID</key>
+			<string>16B8E4FE-5CCD-5510-8C89-A2213EE7B53C</string>
+			<key>EAPClientConfiguration</key>
+			<dict>
+				<key>AcceptEAPTypes</key>
+				<array>
+					<integer>13</integer>
+				</array>
+				<key>TLSTrustedServerNames</key>
+				<array>
+					<string>radius.example.com</string>
+				</array>
+				<key>TLSMinimumVersion</key>
+				<string>1.2</string>
+				<key>TLSMaximumVersion</key>
+				<string>1.3</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

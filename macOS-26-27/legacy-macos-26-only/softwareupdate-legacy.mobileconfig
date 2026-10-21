@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.softwareupdate-legacy</string>
+	<key>PayloadUUID</key>
+	<string>E7FA3E9B-267E-5FA8-AA9A-F61A8A206F3C</string>
+	<key>PayloadDisplayName</key>
+	<string>Software Update (legacy, macOS 26 only)</string>
+	<key>PayloadDescription</key>
+	<string>Legacy com.apple.SoftwareUpdate payload and restriction deferrals. REMOVED in macOS 27 - they do nothing there. Use Declarative Device Management (com.apple.configuration.softwareupdate.settings and enforcement) via Intune's Settings catalog for macOS 27.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.SoftwareUpdate</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.softwareupdate-legacy.1</string>
+			<key>PayloadUUID</key>
+			<string>DDBBB3DD-291B-5BD6-9BD3-878AA68794A7</string>
+			<key>PayloadDisplayName</key>
+			<string>Software Update</string>
+			<key>AutomaticCheckEnabled</key>
+			<true/>
+			<key>AutomaticDownload</key>
+			<true/>
+			<key>AutomaticallyInstallMacOSUpdates</key>
+			<false/>
+			<key>CriticalUpdateInstall</key>
+			<true/>
+			<key>ConfigDataInstall</key>
+			<true/>
+			<key>AllowPreReleaseInstallation</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.applicationaccess</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.softwareupdate-legacy.2</string>
+			<key>PayloadUUID</key>
+			<string>01C7BFEF-DDD3-58BE-80CB-FC31504AFB58</string>
+			<key>PayloadDisplayName</key>
+			<string>Update deferrals</string>
+			<key>forceDelayedSoftwareUpdates</key>
+			<true/>
+			<key>enforcedSoftwareUpdateDelay</key>
+			<integer>14</integer>
+			<key>enforcedSoftwareUpdateMajorOSDeferredInstallDelay</key>
+			<integer>30</integer>
+			<key>enforcedSoftwareUpdateMinorOSDeferredInstallDelay</key>
+			<integer>7</integer>
+		</dict>
+	</array>
+</dict>
+</plist>

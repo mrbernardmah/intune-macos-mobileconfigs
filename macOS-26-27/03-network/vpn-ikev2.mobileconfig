@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.vpn-ikev2</string>
+	<key>PayloadUUID</key>
+	<string>50F27C18-D0F8-57E5-A252-66E50E11F15F</string>
+	<key>PayloadDisplayName</key>
+	<string>VPN - IKEv2 (template)</string>
+	<key>PayloadDescription</key>
+	<string>Template. IKEv2 with certificate auth. Algorithms meet macOS 26 minimums (no DES/3DES/SHA1, DH group 14+). Declarative VPN configurations arrive in macOS 27 but this payload still works.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.vpn.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.vpn-ikev2.1</string>
+			<key>PayloadUUID</key>
+			<string>A4913A5A-C32F-5287-A133-58EB80BC0F7B</string>
+			<key>PayloadDisplayName</key>
+			<string>VPN</string>
+			<key>UserDefinedName</key>
+			<string>Corporate VPN</string>
+			<key>VPNType</key>
+			<string>IKEv2</string>
+			<key>IKEv2</key>
+			<dict>
+				<key>RemoteAddress</key>
+				<string>vpn.example.com</string>
+				<key>LocalIdentifier</key>
+				<string>REPLACE_LOCAL_ID</string>
+				<key>RemoteIdentifier</key>
+				<string>vpn.example.com</string>
+				<key>AuthenticationMethod</key>
+				<string>Certificate</string>
+				<key>ExtendedAuthEnabled</key>
+				<integer>0</integer>
+				<key>DeadPeerDetectionRate</key>
+				<string>Medium</string>
+				<key>EnablePFS</key>
+				<integer>1</integer>
+				<key>DisableMOBIKE</key>
+				<integer>0</integer>
+				<key>DisableRedirect</key>
+				<integer>0</integer>
+				<key>IKESecurityAssociationParameters</key>
+				<dict>
+					<key>EncryptionAlgorithm</key>
+					<string>AES-256-GCM</string>
+					<key>IntegrityAlgorithm</key>
+					<string>SHA2-256</string>
+					<key>DiffieHellmanGroup</key>
+					<integer>20</integer>
+					<key>LifeTimeInMinutes</key>
+					<integer>1440</integer>
+				</dict>
+				<key>ChildSecurityAssociationParameters</key>
+				<dict>
+					<key>EncryptionAlgorithm</key>
+					<string>AES-256-GCM</string>
+					<key>IntegrityAlgorithm</key>
+					<string>SHA2-256</string>
+					<key>DiffieHellmanGroup</key>
+					<integer>20</integer>
+					<key>LifeTimeInMinutes</key>
+					<integer>1440</integer>
+				</dict>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

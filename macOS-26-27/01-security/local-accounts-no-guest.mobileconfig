@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.local-accounts-no-guest</string>
+	<key>PayloadUUID</key>
+	<string>6E6FB893-5BEB-50D7-A19D-C88756F053C9</string>
+	<key>PayloadDisplayName</key>
+	<string>Local Accounts - Disable Guest</string>
+	<key>PayloadDescription</key>
+	<string>Disables the guest account and guest access to shared folders.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.MCX</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.local-accounts-no-guest.1</string>
+			<key>PayloadUUID</key>
+			<string>789FA043-9C24-5487-BB04-FA394994722D</string>
+			<key>PayloadDisplayName</key>
+			<string>Guest account</string>
+			<key>DisableGuestAccount</key>
+			<true/>
+			<key>EnableGuestAccount</key>
+			<false/>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.web-content-filter-builtin</string>
+	<key>PayloadUUID</key>
+	<string>E589FEC4-A862-5B01-893B-1564B4782AD2</string>
+	<key>PayloadDisplayName</key>
+	<string>Web Content Filter (built-in)</string>
+	<key>PayloadDescription</key>
+	<string>Apple's built-in web content filter for Safari with an example deny list.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.webcontent-filter</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.web-content-filter-builtin.1</string>
+			<key>PayloadUUID</key>
+			<string>BF9A30C4-E4EE-522A-8ECE-2FC818250E9C</string>
+			<key>PayloadDisplayName</key>
+			<string>Web content filter</string>
+			<key>FilterType</key>
+			<string>BuiltIn</string>
+			<key>AutoFilterEnabled</key>
+			<true/>
+			<key>FilterBrowsers</key>
+			<true/>
+			<key>FilterSockets</key>
+			<false/>
+			<key>PermittedURLs</key>
+			<array/>
+			<key>DenyListURLs</key>
+			<array>
+				<string>https://example-blocked.test</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

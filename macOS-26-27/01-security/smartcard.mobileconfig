@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.smartcard</string>
+	<key>PayloadUUID</key>
+	<string>5C00B793-4142-5733-B8A3-079550A9ECE4</string>
+	<key>PayloadDisplayName</key>
+	<string>Smart Card Policy</string>
+	<key>PayloadDescription</key>
+	<string>Allows smart card use and pairing, with certificate trust checking.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.security.smartcard</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.smartcard.1</string>
+			<key>PayloadUUID</key>
+			<string>45A653AB-7EFE-5FB3-9E59-72FDA0A78D4D</string>
+			<key>PayloadDisplayName</key>
+			<string>Smart card</string>
+			<key>allowSmartCard</key>
+			<true/>
+			<key>UserPairing</key>
+			<true/>
+			<key>CheckCertificateTrust</key>
+			<integer>1</integer>
+			<key>oneCardPerUser</key>
+			<false/>
+			<key>tokenRemovalAction</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+</dict>
+</plist>

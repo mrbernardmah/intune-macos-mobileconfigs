@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.managed-login-items-microsoft</string>
+	<key>PayloadUUID</key>
+	<string>ABA379D8-55BA-5915-A638-FF7B67FF7347</string>
+	<key>PayloadDisplayName</key>
+	<string>Managed Login Items - Microsoft</string>
+	<key>PayloadDescription</key>
+	<string>Pre-approves Microsoft background items (Defender, Office, OneDrive, Teams, AutoUpdate) so users are not prompted.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.servicemanagement</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.managed-login-items-microsoft.1</string>
+			<key>PayloadUUID</key>
+			<string>D132C15B-0D05-5848-80B7-AF86C10207DE</string>
+			<key>PayloadDisplayName</key>
+			<string>Managed login items</string>
+			<key>Rules</key>
+			<array>
+				<dict>
+					<key>RuleType</key>
+					<string>TeamIdentifier</string>
+					<key>RuleValue</key>
+					<string>UBF8T346G9</string>
+					<key>Comment</key>
+					<string>Microsoft Corporation</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

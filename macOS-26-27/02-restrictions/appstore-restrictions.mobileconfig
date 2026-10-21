@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.appstore-restrictions</string>
+	<key>PayloadUUID</key>
+	<string>FEC88526-4C8F-51A8-8D75-F78358499764</string>
+	<key>PayloadDisplayName</key>
+	<string>App Store Restrictions</string>
+	<key>PayloadDescription</key>
+	<string>Requires an administrator to install App Store apps and limits the store to software updates only if desired.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.appstore</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.appstore-restrictions.1</string>
+			<key>PayloadUUID</key>
+			<string>3AB93C00-8CE5-50EA-8F4C-1E188A8B0C02</string>
+			<key>PayloadDisplayName</key>
+			<string>App Store</string>
+			<key>restrict-store-require-admin-to-install</key>
+			<true/>
+			<key>restrict-store-softwareupdate-only</key>
+			<false/>
+		</dict>
+	</array>
+</dict>
+</plist>

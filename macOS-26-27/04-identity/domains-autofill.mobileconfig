@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.domains-autofill</string>
+	<key>PayloadUUID</key>
+	<string>BEB1C2BC-245C-5B0F-B78D-F460506D4DC9</string>
+	<key>PayloadDisplayName</key>
+	<string>Managed Domains (template)</string>
+	<key>PayloadDescription</key>
+	<string>Template. Marks domains for Safari password AutoFill and managed web/email domains.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.domains</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.domains-autofill.1</string>
+			<key>PayloadUUID</key>
+			<string>881E4527-45D9-5E05-9631-D3872BB01717</string>
+			<key>PayloadDisplayName</key>
+			<string>Domains</string>
+			<key>SafariPasswordAutoFillDomains</key>
+			<array>
+				<string>example.com</string>
+			</array>
+			<key>WebDomains</key>
+			<array>
+				<string>example.com</string>
+			</array>
+			<key>EmailDomains</key>
+			<array>
+				<string>example.com</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

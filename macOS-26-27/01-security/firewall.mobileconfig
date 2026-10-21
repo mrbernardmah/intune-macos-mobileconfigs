@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.firewall</string>
+	<key>PayloadUUID</key>
+	<string>66C508EE-CCEB-587F-A62D-2143DCE4617D</string>
+	<key>PayloadDisplayName</key>
+	<string>Firewall</string>
+	<key>PayloadDescription</key>
+	<string>Enables the application firewall with stealth mode and logging.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.security.firewall</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.firewall.1</string>
+			<key>PayloadUUID</key>
+			<string>6B1DD293-C0DC-5EDD-A627-62530B8684E6</string>
+			<key>PayloadDisplayName</key>
+			<string>Firewall</string>
+			<key>EnableFirewall</key>
+			<true/>
+			<key>BlockAllIncoming</key>
+			<false/>
+			<key>EnableStealthMode</key>
+			<true/>
+			<key>AllowSigned</key>
+			<true/>
+			<key>AllowSignedApp</key>
+			<true/>
+			<key>LoggingEnabled</key>
+			<true/>
+			<key>LoggingOption</key>
+			<string>brief</string>
+		</dict>
+	</array>
+</dict>
+</plist>

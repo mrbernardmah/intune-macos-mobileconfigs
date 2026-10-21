@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.entra-platform-sso</string>
+	<key>PayloadUUID</key>
+	<string>0F90D7FF-A043-5447-9D02-79624627658E</string>
+	<key>PayloadDisplayName</key>
+	<string>Microsoft Entra - Platform SSO (Secure Enclave)</string>
+	<key>PayloadDescription</key>
+	<string>Platform SSO with Secure Enclave key. Uses Intune's {{DEVICEREGISTRATION}} token. macOS 27 extends Platform SSO to FileVault unlock and lock screen; Intune's Settings catalog Platform SSO policy is preferred for new keys.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.extensiblesso</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.entra-platform-sso.1</string>
+			<key>PayloadUUID</key>
+			<string>94D413EA-7823-5F47-849B-0A09BF44DD35</string>
+			<key>PayloadDisplayName</key>
+			<string>Platform SSO</string>
+			<key>ExtensionIdentifier</key>
+			<string>com.microsoft.CompanyPortalMac.ssoextension</string>
+			<key>TeamIdentifier</key>
+			<string>UBF8T346G9</string>
+			<key>Type</key>
+			<string>Redirect</string>
+			<key>URLs</key>
+			<array>
+				<string>https://login.microsoftonline.com</string>
+				<string>https://login.microsoft.com</string>
+				<string>https://sts.windows.net</string>
+				<string>https://login.partner.microsoftonline.cn</string>
+				<string>https://login.chinacloudapi.cn</string>
+				<string>https://login.microsoftonline.us</string>
+				<string>https://login-us.microsoftonline.com</string>
+			</array>
+			<key>ScreenLockedBehavior</key>
+			<string>DoNotHandle</string>
+			<key>ExtensionData</key>
+			<dict>
+				<key>device_registration</key>
+				<string>{{DEVICEREGISTRATION}}</string>
+				<key>browser_sso_interaction_enabled</key>
+				<integer>1</integer>
+				<key>disable_explicit_app_prompt</key>
+				<integer>1</integer>
+			</dict>
+			<key>PlatformSSO</key>
+			<dict>
+				<key>AuthenticationMethod</key>
+				<string>UserSecureEnclaveKey</string>
+				<key>UseSharedDeviceKeys</key>
+				<true/>
+				<key>AccountDisplayName</key>
+				<string>Microsoft Entra ID</string>
+				<key>EnableAuthorization</key>
+				<true/>
+				<key>EnableCreateUserAtLogin</key>
+				<true/>
+				<key>NewUserAuthorizationMode</key>
+				<string>Standard</string>
+				<key>UserAuthorizationMode</key>
+				<string>Standard</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

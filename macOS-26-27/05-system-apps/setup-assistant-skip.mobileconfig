@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadIdentifier</key>
+	<string>io.github.mrbernardmah.intune.setup-assistant-skip</string>
+	<key>PayloadUUID</key>
+	<string>72D7968C-677B-5522-84B7-032BB7FF87E5</string>
+	<key>PayloadDisplayName</key>
+	<string>Setup Assistant - Skip Panes</string>
+	<key>PayloadDescription</key>
+	<string>Skips optional Setup Assistant panes for new users. For ADE enrollments also set skip keys in the Intune enrollment profile; some panes (e.g. Age Range) cannot be skipped outside ADE on macOS 26.</string>
+	<key>PayloadOrganization</key>
+	<string>Intune macOS Profiles (community)</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.SetupAssistant.managed</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadIdentifier</key>
+			<string>io.github.mrbernardmah.intune.setup-assistant-skip.1</string>
+			<key>PayloadUUID</key>
+			<string>5765D299-7E6B-502B-8942-7EBB078C8199</string>
+			<key>PayloadDisplayName</key>
+			<string>Setup Assistant</string>
+			<key>SkipCloudSetup</key>
+			<true/>
+			<key>SkipSiriSetup</key>
+			<true/>
+			<key>SkipPrivacySetup</key>
+			<true/>
+			<key>SkipiCloudStorageSetup</key>
+			<true/>
+			<key>SkipTouchIDSetup</key>
+			<true/>
+			<key>SkipScreenTime</key>
+			<true/>
+			<key>SkipAppearance</key>
+			<true/>
+			<key>SkipTrueTone</key>
+			<true/>
+			<key>SkipUnlockWithWatch</key>
+			<true/>
+		</dict>
+	</array>
+</dict>
+</plist>
